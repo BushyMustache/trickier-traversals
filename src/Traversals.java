@@ -26,7 +26,10 @@ public class Traversals {
    * @return the count of internal nodes, or 0 if the tree is null
    */
   public static int countInternalNodes(TreeNode<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+    int count = 0;
+    if (node.left != null || node.right != node.right) count++;
+    return count + countInternalNodes(node.left) + countInternalNodes(node.right);
   }
 
   /**
@@ -40,7 +43,11 @@ public class Traversals {
    * @return a post-order traversal string, or an empty string if the tree is null
    */
   public static <T> String buildPostOrderString(TreeNode<T> node) {
-    return null;
+    if (node == null) return "";
+    String built = "";
+    built = built + buildPostOrderString(node.left);
+    built = built + buildPostOrderString(node.right);
+    return built + node.value;
   }
 
   /**
