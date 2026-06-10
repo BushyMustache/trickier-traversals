@@ -86,7 +86,22 @@ public class Traversals {
    * @return the number of unique values in the tree, or 0 if the tree is null
    */
   public static int countDistinctValues(TreeNode<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    Set<Integer> distinct = new HashSet<>();
+    Queue<TreeNode<Integer>> queue = new LinkedList<>();
+
+    queue.offer(node);
+
+    while (!queue.isEmpty()) {
+      TreeNode<Integer> current = queue.remove();
+      distinct.add(current.value);
+
+      if (current.left != null) queue.offer(current.left);
+      if (current.right != null) queue.offer(current.right);
+    }
+
+    return distinct.size();
   }
 
   /**
